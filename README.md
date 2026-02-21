@@ -3,7 +3,7 @@
 A full-stack role-based certificate request and slot allocation platform built using **Flask, SQLite, and Jinja2**.
 Designed to simulate a real-world university workflow with admin approval and conflict-safe scheduling.
 
-🔗 **Live Demo:** https://YOUR-RENDER-URL.onrender.com
+🔗 **Live Demo:** https://slot-booking-flask.onrender.com/student
 
 ---
 
