@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard</title>
+
+<style>
+body{margin:0;font-family:'Segoe UI';background:#f4f6fb;padding:20px}
+.card{background:#fff;border-radius:14px;padding:20px;max-width:900px;margin:auto}
+table{width:100%;border-collapse:collapse;margin-top:15px}
+th,td{padding:8px;border-bottom:1px solid #e6e9f0;text-align:center}
+.status{padding:4px 10px;border-radius:12px;font-size:12px}
+.pending{background:#fff3cd;color:#856404}
+.approved{background:#d4edda;color:#155724}
+.rejected{background:#f8d7da;color:#721c24}
+button{padding:10px 16px;border:none;border-radius:8px;background:#243b6b;color:#fff;cursor:pointer}
+.btn-danger{background:#dc3545}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;justify-content:center;align-items:center}
+.modal.show{display:flex}
+.modal-content{background:#fff;border-radius:14px;width:350px;padding:20px}
+</style>
+
+</head>
+
+<body>
+<div class="card">
+
+<div style="display:flex;justify-content:space-between;">
+  <h2>My Certificates</h2>
+  <a href="/logout"><button class="btn-danger">Logout</button></a>
+</div>
+
+<button onclick="openModal()">New Application</button>
+
+<table>
+<tr>
+  <th>ID</th><th>Certificate</th><th>Status</th><th>Slot</th><th>Remarks</th>
+</tr>
+
+{% for r in requests %}
+
+<tr>
+  <td>{{ r[0] }}</td>
+  <td>{{ r[2] }}</td>
+  <td><span class="status {{ r[3]|lower }}">{{ r[3] }}</span></td>
+  <td>{{ r[4] }}</td>
+  <td>{{ r[5] }}</td>
+</tr>
+{% endfor %}
+</table>
+
+</div>
+
+<div class="modal" id="requestModal">
+  <div class="modal-content">
+    <h3>Request Certificate</h3>
+    <form method="POST" action="/submit_request">
+      <select name="certificate" required style="width:100%;padding:10px;">
+        <option value="">--Choose--</option>
+        <option>Transcript</option>
+        <option>Degree Certificate</option>
+        <option>Provisional Certificate</option>
+      </select>
+      <button type="submit" style="margin-top:12px;">Submit</button>
+    </form>
+  </div>
+</div>
+
+<script>
+function openModal(){document.getElementById("requestModal").classList.add("show");}
+window.onclick=function(e){
+  const m=document.getElementById("requestModal");
+  if(e.target===m)m.classList.remove("show");
+}
+</script>
+
+</body>
+</html>

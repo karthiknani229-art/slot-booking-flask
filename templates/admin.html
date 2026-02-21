@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+
+<style>
+:root{
+  --bg:#f4f6fb;
+  --card:#ffffff;
+  --border:#e6e9f0;
+  --primary:#243b6b;
+  --danger:#dc3545;
+  --success:#16a34a;
+  --text:#1f2937;
+}
+
+body{
+  margin:0;
+  font-family:'Segoe UI', Arial, sans-serif;
+  background:var(--bg);
+  padding:24px;
+  color:var(--text);
+}
+
+.card{
+  background:var(--card);
+  border-radius:16px;
+  padding:24px;
+  max-width:1100px;
+  margin:auto;
+  box-shadow:0 20px 40px rgba(0,0,0,.06);
+  border:1px solid var(--border);
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+
+th,td{
+  padding:12px 10px;
+  border-bottom:1px solid var(--border);
+  text-align:center;
+  font-size:13px;
+}
+
+th{
+  background:#f8fafc;
+  font-weight:600;
+}
+
+tr:hover{
+  background:#fafbff;
+}
+
+textarea{
+  width:100%;
+  padding:8px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  font-size:12px;
+  resize:none;
+}
+
+input[type="datetime-local"]{
+  width:180px;
+  padding:6px;
+  border-radius:8px;
+  border:1px solid var(--border);
+}
+
+button{
+  padding:8px 16px;
+  border:none;
+  border-radius:10px;
+  background:var(--primary);
+  color:#fff;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:600;
+  transition:.2s;
+}
+
+button:hover{
+  transform:translateY(-1px);
+  box-shadow:0 6px 16px rgba(0,0,0,.12);
+}
+
+.btn-danger{
+  background:var(--danger);
+}
+
+.empty{
+  padding:40px;
+  color:#64748b;
+  font-weight:500;
+}
+
+@media(max-width:768px){
+  body{padding:14px}
+  .card{padding:16px}
+  th,td{font-size:12px}
+}
+</style>
+
+</head>
+
+<body>
+<div class="card">
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
+  <h2>Admin Dashboard (Pending Queue)</h2>
+  <a href="/logout"><button class="btn-danger">Logout</button></a>
+</div>
+
+<table>
+<tr>
+  <th>ID</th>
+  <th>Student</th>
+  <th>Certificate</th>
+  <th>Action</th>
+</tr>
+
+{% if requests %}
+{% for r in requests %}
+
+  <tr>
+    <td>{{ r[0] }}</td>
+    <td>{{ r[1] }}</td>
+    <td>{{ r[2] }}</td>
+
+
+<td>
+  <!-- Approve -->
+  <form method="POST" action="/approve/{{ r[0] }}" style="margin-bottom:6px;">
+    <input name="slot" type="datetime-local" required>
+    <button type="submit">Approve</button>
+  </form>
+
+  <!-- Reject -->
+  <form method="POST" action="/reject/{{ r[0] }}">
+    <textarea name="remark" placeholder="Reject reason" required></textarea>
+    <button type="submit" class="btn-danger">Reject</button>
+  </form>
+</td>
+
+
+  </tr>
+  {% endfor %}
+{% else %}
+  <tr>
+    <td colspan="4" class="empty">No pending requests 🎉</td>
+  </tr>
+{% endif %}
+
+</table>
+
+</div>
+</body>
+</html>
