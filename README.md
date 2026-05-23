@@ -1,54 +1,62 @@
-# 🎓 University Certificate Slot Booking System
+markdown# University Certificate Slot Booking System
 
-A full-stack role-based certificate request and slot allocation platform built using **Flask, SQLite, and Jinja2**.
-Designed to simulate a real-world university workflow with admin approval and conflict-safe scheduling.
+A full-stack role-based certificate request and slot allocation platform built with Flask, SQLite, and Jinja2. Simulates a real-world university workflow with admin approval and conflict-safe scheduling.
 
-🔗 **Live Demo:** https://slot-booking-flask.onrender.com/student
+## Live Demo
 
----
+- Student Portal: https://slot-booking-flask.onrender.com/student
 
-## 🚀 Features
+> Note: Backend is on Render's free tier — first request may take 30–60 seconds due to cold start.
 
-### 👨‍🎓 Student
+## Tech Stack
 
-* Secure login
-* Apply for certificates
-* Track request status
-* View allocated slot
-* View rejection remarks
+**Backend:** Python, Flask
 
-### 👨‍💼 Admin
+**Frontend:** HTML, CSS, Jinja2
 
-* Role-based dashboard
-* Pending request queue
-* Approve with date-time slot
-* Reject with mandatory remarks
-* Real-time queue update
+**Database:** SQLite
 
-### 🧠 Smart System Logic
+**Server:** Gunicorn
 
-* Slot conflict prevention
-* Pending-only admin queue
-* Flash feedback system
-* Session-based authentication
-* Clean dashboard workflow
+**Deployment:** Render
 
----
+## Features
 
-## 🛠️ Tech Stack
+**Student**
+- Secure login and session management
+- Apply for certificates
+- Track request status
+- View allocated slot and rejection remarks
 
-* **Backend:** Flask (Python)
-* **Frontend:** HTML, CSS, Jinja2
-* **Database:** SQLite
-* **Server:** Gunicorn
-* **Deployment:** Render
+**Admin**
+- Role-based dashboard with pending request queue
+- Approve requests with date-time slot allocation
+- Reject requests with mandatory remarks
+- Real-time queue updates
 
----
+**System Logic**
+- Slot conflict prevention
+- Session-based authentication
+- Flash feedback on all actions
 
-## ⚙️ Local Setup
+## Project Structure
+
+```
+slot-booking-flask/
+│
+├── app.py
+├── requirements.txt
+├── templates/
+│   ├── student/
+│   └── admin/
+├── static/
+└── README.md
+```
+
+## Local Setup
 
 ```bash
-git clone <your-repo>
+git clone https://github.com/karthiknani229-art/slot-booking-flask.git
 cd slot-booking-flask
 pip install -r requirements.txt
 python app.py
@@ -56,22 +64,13 @@ python app.py
 
 Open: http://127.0.0.1:5000
 
----
+## Demo Credentials
 
-## 🔐 Demo Credentials
+| Role | Username | Password |
+|------|----------|----------|
+| Admin | admin | 123 |
+| Student | stu1 | stu1 |
 
-**Admin**
+## Author
 
-* ID: admin
-* Password: 123
-
-**Student**
-
-* Roll No = Password (demo logic) stu1
-
----
-
-## 👤 Author
-
-**Penta Karthik**
-Backend & Full Stack Developer
+Penta Karthik — [GitHub](https://github.com/karthiknani229-art)
